@@ -79,6 +79,12 @@ exhaustFunds = async (balance, nfts) => {
 
 <div align="center">
   <img title="" src="images/withdrawendpoint.png" alt="PrismSec logo" data-align="center">
-</div>
+</div> 
 
-# 
+# Tips for BeamNFT to fix
+
+1. Sanitize inputs and check for presence or Javascript
+
+2. No need for the API, its not for public use and was a great help
+
+3. Why so much info coming back in console? dont log so much info to console, was a great help
