@@ -1,20 +1,22 @@
 buyNft = async (id, price) => {
-  // nftId = "123";
-  // const data = { username: "example" };
-  // const balance = await fetch(`https://api.beamnft.art/nft/buy/${nftId}`, {
-  //   method: "POST",
-  //   headers: {
-  //     "Access-Control-Request-Headers": "*",
-  //   },
-  //   credentials: "include",
-  //   body: JSON.stringify(data),
-  // });
+  const data = { nft_id: id, price: price };
+
+  const nftBought = await fetch(`https://api.beamnft.art/nft/buy/${id}`, {
+    method: "POST",
+    headers: {
+      "Access-Control-Request-Headers": "*",
+    },
+    credentials: "include",
+    body: JSON.stringify(data),
+  });
 
   console.log(`NFT ID: ${id}`);
   console.log(`NFT Price: ${price}`);
+
+  return nftBought;
 };
 
-exhaustFunds = (balance, nfts) => {
+exhaustFunds = async (balance, nfts) => {
   // balance in BEAM and GROTH
   let beamBalance = balance / 100000000;
   let grothBalance = balance;
@@ -28,7 +30,8 @@ exhaustFunds = (balance, nfts) => {
   // loop through nft object, show only nfts which are for sale (price > 0)
   for (let key in nfts) {
     if (nfts[key].price != 0) {
-      buyNft(nfts[key]._id, nfts[key].price);
+      let bought = await buyNft(nfts[key]._id, nfts[key].price);
+      console.log(bought);
     }
   }
 };
