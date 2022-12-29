@@ -4,6 +4,8 @@ buyNft = async (id, price) => {
   const nftBought = await fetch(url, {
     method: "POST",
     headers: {
+      Accept: "application/json",
+      "Content-Type": true,
       "Access-Control-Request-Headers": "*",
     },
     credentials: "include",
@@ -12,14 +14,14 @@ buyNft = async (id, price) => {
   console.log(`NFT ID: ${id}`);
   console.log(`NFT Price: ${price}`);
 
-  return nftBought;
+  return nftBought.json();
 };
 
 exhaustFunds = async (balance, nfts) => {
   // balance in BEAM and GROTH
   let beamBalance = balance / 100000000;
   let grothBalance = balance;
-  let transactionFee;
+  let transactionFee = 100000000;
 
   console.clear(); // sanitize console
 
@@ -28,9 +30,15 @@ exhaustFunds = async (balance, nfts) => {
 
   // loop through nft object, show only nfts which are for sale (price > 0)
   for (let key in nfts) {
-    if (nfts[key].price != 0) {
+    if (nfts[key].price != 0 && nfts[key].price < grothBalance) {
       let bought = await buyNft(nfts[key]._id, nfts[key].price);
-      console.log(bought); // response to POST request
+      grothBalance = grothBalance - (nfts[key].price + transactionFee); // update balance
+      console.log(`exhaused ${nfts[key].price / 100000000} BEAM`); // replace console.log with discord notification
+      //  TODO - Do we need to wait for => block confirmation before continue?
+    } else {
+      console.log(
+        "didnt exhaust, either NFT isnt for sale or balance too low to afford NFT"
+      );
     }
   }
 };
