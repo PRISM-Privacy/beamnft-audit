@@ -28,8 +28,8 @@ getData = async () => {
 
 exhaustFunds = (balance, nfts) => {
   // balance in BEAM and GROTH
-  let beamBalance = balance;
-  let grothBalance = balance / 100000000;
+  let beamBalance = balance / 100000000;
+  let grothBalance = balance;
 
   console.clear(); // sanitize console
 
