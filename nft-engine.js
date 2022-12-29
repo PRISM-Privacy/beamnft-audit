@@ -33,8 +33,8 @@ exhaustFunds = (balance, nfts) => {
 
   console.clear(); // sanitize console
 
-  console.log(`balance in BEAM: ${beamBalance}`);
-  console.log(`balance in GROTH: ${grothBalance}`);
+  console.log(`balance in BEAM: ${beamBalance} BEAM`);
+  console.log(`balance in GROTH: ${grothBalance} GROTH`);
 
   // console.log(walletBalance);
   console.log(nfts);
