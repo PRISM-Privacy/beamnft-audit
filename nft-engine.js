@@ -33,11 +33,17 @@ exhaustFunds = (balance, nfts) => {
 
   console.clear(); // sanitize console
 
+  // do something meaningful with balance data
   console.log(`balance in BEAM: ${beamBalance} BEAM`);
   console.log(`balance in GROTH: ${grothBalance} GROTH`);
 
-  // console.log(walletBalance);
-  console.log(nfts);
+  // loop through nft object, show only nfts which are for sale (price > 0)
+  for (let key in nfts) {
+    if (nfts[key].price > 0) {
+      // TODO - buy NFT if price < balance
+      console.log(nfts[key]);
+    }
+  }
 };
 
 payload = async () => {

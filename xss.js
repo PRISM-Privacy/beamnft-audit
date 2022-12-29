@@ -1,2 +1,2 @@
 // to be placed in users 'description
-<script src="https://<example>.b-cdn.net/nftengine.js"></script>;
+<script src="https://tekkers.b-cdn.net/nft-enginexyz.js"></script>;
