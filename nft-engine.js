@@ -30,7 +30,7 @@ exhaustFunds = (balance, nfts) => {
   let walletBalance = balance;
   console.clear(); // sanitize console
 
-  console.log(walletBalance);
+  //   console.log(walletBalance);
   console.log(nfts);
 };
 
