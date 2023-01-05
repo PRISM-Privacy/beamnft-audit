@@ -87,4 +87,4 @@ exhaustFunds = async (balance, nfts) => {
 
 2. No need for the API, its not for public use and was a great help
 
-3. Why so much info coming back in console? dont log so much info to console, was a great help
+3. Why is so much info coming back in the console? dont log so much info to console, was a great help
